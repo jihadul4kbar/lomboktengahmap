@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         Pengaturan::create([
             'nama_app' => "Peta Lombok Tengah",
             'singkatan' => "PLT",
-            'logo' => "logo-loteng.png",
+            'logo' => "1701154338.png",
             'latitude' => "-8.6631487",
             'longitude' => "116.2848176",
             'zoom' => "9",
