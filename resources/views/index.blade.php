@@ -34,8 +34,8 @@
     </head>
     <body>
         <div id="map"></div>
-        <nav class="navbar fixed-top navbar-light" style="background-color: #3e4676;">
-            <a class="navbar-brand mx-auto" href="#">
+        <nav class="navbar fixed-top navbar-light" style="background-color: #3e4676;padding:.1rem 1rem">
+            <a class="navbar-brand" href="#">
                 <img src="{{ asset('img/logo/' . $setting->logo) }}", width="30">
                 {{ $setting->nama_app }}
             </a>

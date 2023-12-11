@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class LokasiController extends Controller
 {
@@ -18,26 +20,41 @@ class LokasiController extends Controller
 
     public function create()
     {
+        $pengaturan = DB::table('pengaturans')->where('id', 1)->first();
         $kategori = DB::table('kategoris')->get();
-        return view('backend.lokasi.add', compact('kategori'));
+        return view('backend.lokasi.add', compact('kategori','pengaturan'));
     }
 
     public function store(Request $request)
     {
-        #Validasi
-        $this->validate($request,[
-            'kategori'  =>'required|min:2',
-            'icon'      =>'required|min:1',
-            'parent_id' =>'required|min:1'
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'nama_lokasi' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'gambar'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'id_kategori'     => 'required',
+            'icon'   => 'required',
         ]);
-        # Simpan Kategori
-        Kategori::create([
-            'kategori'  => $request->kategori,
-            'icon'      => $request->icon,
-            'parent_id' => $request->parent_id
+        //check if validation fails
+        // if ($validator->fails()) {
+        //     return redirect('lokasi/create')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+        //upload gambar
+        $image = $request->file('gambar');
+        $image->storeAs('public/gambar', $image->hashName());
+        //create 
+        $lokasi = Lokasi::create([
+            'nama_lokasi' => $request->nama_lokasi,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'gambar'     => $image->hashName(),
+            'id_kategori'     => $request->id_kategori,
+            'icon'   => $request->icon,
         ]);
 
-        #Kembali Ke halaman Index
-        return redirect('/kategori')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect('/lokasi')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <img src="{{ asset('img/logo/' . $pengaturan->logo) }}" />
+                                    <img src="{{ asset('img/logo/' . $pengaturan->logo) }}" width="100px"/>
                                     <br>
 
                                     <label for="name" class="form-label">Logo</label>

@@ -37,7 +37,7 @@
                             <td>{{$row->nama_lokasi}}</td>
                             <td>{{$row->latitude}}</td>
                             <td>{{$row->longitude}}</td>
-                            <td>{{$row->gambar}}</td>
+                            <td><img src="{{ asset('img/gambar/' . $row->gambar) }}" width="100px"/></td>
                             <td>{{$row->id_kategori}}</td>
                             <td><i class="{{$row->icon}}"></i></td>
                             <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
