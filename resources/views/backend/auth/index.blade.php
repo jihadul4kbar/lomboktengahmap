@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title') {{  "Data Pengguna" }} @endsection
 @section('isi')
 <!-- Main Content -->
 <div class="main-content">
@@ -24,15 +25,15 @@
                             <th>No</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th><a href="{{route('daftar')}}">Tambah Data</a> </th>
+                            <th><a href="{{route('daftar')}}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"> </i> Tambah Data</a> </th>
                         </tr>
                         @forelse ($pengguna as $row )
                         <tr>
                             <td>{{$nomor++}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
-                            <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fa fa-f3 fa-trash"></i></a></td>
+                            <td><a href="#" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
+                                <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-f3 fa-trash"></i></a></td>
                         </tr>
                     @empty
                         <tr>

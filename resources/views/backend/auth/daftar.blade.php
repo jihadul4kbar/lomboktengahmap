@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title') {{  "Form Pengguna" }} @endsection
 @section('isi')
     <!-- Main Content -->
     <div class="main-content">

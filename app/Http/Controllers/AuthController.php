@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
-    //
     public function login()
     {
         return view('backend.auth.login');
@@ -31,14 +30,6 @@ class AuthController extends Controller
             'email' => ['required','email', 'unique:users,email'],
             'password' => ['required', 'min:8','confirmed']
         ]);
-
-        // $cek = $request->validate([
-        //     'email' => ['required','email', 'unique:users,email'],
-        //     'password' => ['required', 'min:2', 'confirmed'],
-        //     // 'password_confirmation' => ['required', 'min:2', 'confirmed']
-        // ]);
-        // dd($cek);
-
        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

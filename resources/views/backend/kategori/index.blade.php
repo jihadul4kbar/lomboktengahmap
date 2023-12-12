@@ -12,9 +12,6 @@
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Kategori </h2>
-                <p class="section-lead">Kategori peta</p>
-
                 <div class="row">
                   <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">

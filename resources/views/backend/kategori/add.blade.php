@@ -14,9 +14,6 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Kategori </h2>
-            <p class="section-lead">Kategori peta</p>
-
             <div class="row">
               <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
@@ -47,6 +44,9 @@
                         Paren Kategori:
                         <select name="parent_id" class="form-control">
                         @forelse ($paren as $row)
+                              @if (empty($paren))
+                              <option value="0">Umum</option>
+                              @endif
                                 <option value="{{ $row->id }}">{{ $row->kategori }}</option>
                         @empty
                             <option value="">Data tidak ada</option>

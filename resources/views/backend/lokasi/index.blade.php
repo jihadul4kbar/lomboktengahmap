@@ -11,7 +11,6 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Lokasi </h2>
             <div class="row">
               <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
@@ -41,13 +40,14 @@
                             <td>{{$row->kategori}}</td>
                             <td><i class="{{$row->icon}}"></i></td>
                             <td>
-                              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lokasi.destroy', $row->id) }}" method="POST">
+                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lokasi.destroy', $row->id) }}" method="POST">
                                 <a href="{{ route('lokasi.show', $row->id) }}" class="btn btn-dark"><i class="fa fa-f3 fa-eye"></i></a>
                                 <a href="{{ route('lokasi.edit', $row->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="fa fa-f3 fa-trash"></i></button>
                             </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>
