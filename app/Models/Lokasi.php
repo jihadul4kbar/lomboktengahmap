@@ -13,6 +13,7 @@ class Lokasi extends Model
         'latitude',
         'longitude',
         'gambar',
+        'diskripsi',
         'id_kategori',
         'icon'
     ];

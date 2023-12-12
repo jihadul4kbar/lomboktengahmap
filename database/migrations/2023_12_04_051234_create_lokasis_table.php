@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('gambar');
+            $table->string('diskripsi');
             $table->unsignedBigInteger('id_kategori');
             $table->foreign('id_kategori')->references('id')->on('kategoris');
             $table->string('icon');

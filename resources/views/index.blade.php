@@ -40,6 +40,7 @@
                         {{ $setting->nama_app }}
                     </a>
                 </nav>
+                
                 <script>
                     const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: 'Made with <i class="fa fa-heart text-danger"></i> by <a href="https://jihadul4kbar.github.io/" target="_blank">Jihadul Akbar</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -50,13 +51,6 @@
                     const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                         attribution: 'Made with <i class="fa fa-heart text-danger"></i> by <a href="https://jihadul4kbar.github.io/" target="_blank">Jihadul Akbar</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     });
-
-                    const cities = L.layerGroup();
-                    const mLittleton = L.marker([-8.6691767,116.3274118]).bindPopup('RSUD Praya').addTo(cities);
-                    const mDenver = L.marker([-8.6586285,116.3083024]).bindPopup('RSI Yatofa').addTo(cities);
-                    const mAurora = L.marker([-8.7003507,116.2456938]).bindPopup('RS Cahaya Medika').addTo(cities);
-                    const mGolden = L.marker([-8.6931757,116.2789123]).bindPopup('RSIA Bhumi Bunda').addTo(cities);
-
                     const map = L.map('map',{
                         maxZoom: 20,
                         minZoom: 6,
@@ -69,15 +63,24 @@
                         'Humanitarian Map': osmHOT,
                         'Satellite' :satellite
                     };
+
+                    //Layer Group
+                    @foreach ($kategori as $row)
+                    const  {{ strtolower(str_replace(' ', '_', $row->kategori)) }} = L.layerGroup();
+                    @endforeach
                     const overlays = {
-                        'Rumah Sakit': cities
+                        @foreach ($kategori as $row)
+                        '{{ $row->kategori }}': {{ strtolower(str_replace(' ', '_', $row->kategori)) }},
+                        @endforeach
                     };
-                    const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-                    const IPDNLombok = L.marker([-8.6981603,116.2530551]).bindPopup('IPDN Lombok');
-                    const STMIKLombok = L.marker([-8.6991702,116.2827769]).bindPopup('STMIK Lombok');
-                    //Menambah overlay
-                    const sekolah = L.layerGroup([IPDNLombok, STMIKLombok]);
-                    layerControl.addOverlay(sekolah, 'Sekolah');
+                    @foreach ($lokasi as $lok)
+                        const {{ strtolower(str_replace(' ', '_', preg_replace('/[^A-Za-z0-9\-]/', ' ', $lok->nama_lokasi))) }} = L.marker([{{ $lok->latitude }},{{ $lok->longitude }}]).bindPopup('<h3>{{ $lok->nama_lokasi }}</h3>' 
+                        + '<br><img src="{{ asset('storage/lokasi/' . $lok->gambar) }}", width="300" style="text-center">'
+                        + '<p>{{preg_replace('/[^A-Za-z0-9\-]/', ' ', $lok->diskripsi)}}</p>').addTo({{ strtolower(str_replace(' ', '_',$lok->kategori))}});
+                    @endforeach
+
+                    
+                    const layerControl = L.control.layers(baseLayers, overlays).addTo(map);;
         </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

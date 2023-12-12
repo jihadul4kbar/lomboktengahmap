@@ -26,6 +26,7 @@
                             <th>Latitude</th>
                             <th>Longitude</th>
                             <th>Gambar</th>
+                            <th>Diskripsi</th>
                             <th>Kategori</th>
                             <th>Icon</th>
                             <th><a href="{{route('lokasi.create')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> Tambah Data</a> </th>
@@ -37,8 +38,9 @@
                             <td>{{$row->latitude}}</td>
                             <td>{{$row->longitude}}</td>
                             <td><img src="{{ asset('storage/lokasi/' . $row->gambar) }}" width="100px"/></td>
+                            <td>{{substr($row->diskripsi, 0, 50)}}</td>
                             <td>{{$row->kategori}}</td>
-                            <td><i class="{{$row->icon}}"></i></td>
+                            <td>{{$row->icon}}</td>
                             <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lokasi.destroy', $row->id) }}" method="POST">
                                 <a href="{{ route('lokasi.show', $row->id) }}" class="btn btn-dark"><i class="fa fa-f3 fa-eye"></i></a>

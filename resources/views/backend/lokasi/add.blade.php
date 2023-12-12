@@ -53,6 +53,14 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
+                        Diskripsi : <textarea name="diskripsi" class="form-control  @error('diskripsi') is-invalid @enderror" cols="30" rows="10"></textarea>
+                        <!-- error message untuk title -->
+                        @error('diskripsi')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <br>
                         Paren Kategori:
                         <select name="id_kategori" class="form-control">
                         @forelse ($kategori as $row)
@@ -111,7 +119,7 @@ attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contri
 
 map.attributionControl.setPrefix(false);
 map.options.minZoom = 9;
-map.options.maxZoom = 14;
+map.options.maxZoom = 20;
 var marker = new L.marker(curLocation, {
 draggable: 'true'
 });

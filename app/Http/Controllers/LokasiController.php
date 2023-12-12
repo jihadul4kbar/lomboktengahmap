@@ -17,7 +17,7 @@ class LokasiController extends Controller
         // $lokasi = Lokasi::latest()->paginate(5)->fragment('lokasi');
         $lokasi =DB::table('lokasis')
                 ->join('kategoris', 'id_kategori', '=', 'kategoris.id')
-                ->select('lokasis.id', 'lokasis.nama_lokasi','lokasis.latitude','lokasis.longitude','lokasis.gambar','lokasis.icon','kategoris.kategori')
+                ->select('lokasis.id','lokasis.diskripsi', 'lokasis.nama_lokasi','lokasis.latitude','lokasis.longitude','lokasis.gambar','lokasis.icon','kategoris.kategori')
                 ->paginate(5);
         $nomor = 1;
         return view('backend.lokasi.index', compact('lokasi','nomor','judul'));
@@ -37,6 +37,7 @@ class LokasiController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'gambar'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'diskripsi' => 'required',
             'id_kategori'     => 'required',
             'icon'   => 'required',
         ]);
@@ -55,6 +56,7 @@ class LokasiController extends Controller
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'gambar'     => $image->hashName(),
+            'diskripsi' => $request->diskripsi,
             'id_kategori'     => $request->id_kategori,
             'icon'   => $request->icon,
         ]);
