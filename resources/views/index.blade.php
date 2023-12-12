@@ -34,31 +34,12 @@
     </head>
     <body>
         <div id="map"></div>
-        <nav class="navbar fixed-top navbar-light" style="background-color: #3e4676;padding:.1rem 1rem">
+        <nav class="navbar fixed-top navbar-light" style="background-color: #3e4676;padding:.1.5rem 1.5rem">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('img/logo/' . $setting->logo) }}", width="30">
+                <img src="{{ asset('storage/logo/' . $setting->logo) }}", width="30">
                 {{ $setting->nama_app }}
             </a>
         </nav>
-        {{-- <h1>Kabupaten Lombok Tengah</h1> --}}
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-          </div>
-          <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-
-          <script>
-          function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-          }
-
-          function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-          }
-          </script>
         <script>
             const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

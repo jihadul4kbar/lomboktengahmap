@@ -44,7 +44,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('dashboard');
+        return redirect('dashboard');
     }
     public function logout(Request $request)
     {

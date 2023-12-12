@@ -13,24 +13,19 @@ class PengaturanController extends Controller
         $pengaturan = DB::table('pengaturans')->where('id', 1)->first();
         return view('backend.pengaturan.index', compact('pengaturan'));
     }
-
     public function update(Request $request){
         $request->validate([
-            'logo' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+            'logo' => 'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048',
         ]);
-
-        // $logo = time().'.'.$request->logo->extension();  
-        // $tes = $request->logo->move(public_path('img/logo'), $logo);
-
-        //check if gambar is not empty
-        $pengaturan = DB::table('pengaturans')->where('id',$request->id);
+        //Priksa jika gambar tidak kosong
+        $pengaturan = DB::table('pengaturans')->where('id',$request->id)->first();
         if ($request->hasFile('logo')) {
             //upload gambar
             $image = $request->file('logo');
-            $image->storeAs('img/logo', $image->hashName());
-            //delete old gambar
-            Storage::delete('img/logo/'.basename($pengaturan->logo));
-            //update berita with new gambar
+            $image->storeAs('public/logo/', $image->hashName());
+            //hapus gambar sebelumnya
+            Storage::delete('public/logo/'.basename($pengaturan->logo));
+            //update gambar dengan informasi yang lain
             DB::table('pengaturans')->where('id',$request->id)->update([
                 'nama_app' => $request->nama_app,
                 'singkatan' => $request->singkatan,
@@ -49,9 +44,6 @@ class PengaturanController extends Controller
                 'zoom' => $request->zoom
             ]);
         }
-
-        
-        
         return redirect('/pengaturan');
     }
 }

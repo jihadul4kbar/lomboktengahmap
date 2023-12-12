@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Controller
 {
     //
     public function index(){
-        return view('backend.dashboard');
+        $setting = DB::table('pengaturans')->where('id', 1)->first();
+        return view('backend.dashboard',compact('setting'));
     }
 }

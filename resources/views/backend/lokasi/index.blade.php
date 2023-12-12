@@ -37,15 +37,21 @@
                             <td>{{$row->nama_lokasi}}</td>
                             <td>{{$row->latitude}}</td>
                             <td>{{$row->longitude}}</td>
-                            <td><img src="{{ asset('img/gambar/' . $row->gambar) }}" width="100px"/></td>
-                            <td>{{$row->id_kategori}}</td>
+                            <td><img src="{{ asset('storage/lokasi/' . $row->gambar) }}" width="100px"/></td>
+                            <td>{{$row->kategori}}</td>
                             <td><i class="{{$row->icon}}"></i></td>
-                            <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fa fa-f3 fa-trash"></i></a></td>
+                            <td>
+                              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lokasi.destroy', $row->id) }}" method="POST">
+                                <a href="{{ route('lokasi.show', $row->id) }}" class="btn btn-dark"><i class="fa fa-f3 fa-eye"></i></a>
+                                <a href="{{ route('lokasi.edit', $row->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-f3 fa-trash"></i></button>
+                            </form>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">Data Belum Ada</td>
+                            <td colspan="8" class="text-center">Data Belum Ada</td>
                         </tr>
                     @endforelse
                       </table>
@@ -67,13 +73,9 @@
 <script>
     //message with toastr
     @if(session()->has('success'))
-
-        toastr.success('{{ session('success') }}', 'BERHASIL!');
-
+        toastr.success('{{ session('success') }}', 'BERHASIL!'); 
     @elseif(session()->has('error'))
-
-        toastr.error('{{ session('error') }}', 'GAGAL!');
-
+        toastr.error('{{ session('error') }}', 'GAGAL!'); 
     @endif
 </script>
 @endsection

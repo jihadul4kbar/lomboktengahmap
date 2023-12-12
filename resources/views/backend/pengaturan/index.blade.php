@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <img src="{{ asset('img/logo/' . $pengaturan->logo) }}" width="100px"/>
+                                    <img src="{{ asset('storage/logo/' . $pengaturan->logo) }}" width="100px"/>
                                     <br>
 
                                     <label for="name" class="form-label">Logo</label>
@@ -124,7 +124,8 @@
   }).addTo(map);
 
   map.attributionControl.setPrefix(false);
-
+  map.options.minZoom = 9;
+  map.options.maxZoom = 14;
   var marker = new L.marker(curLocation, {
     draggable: 'true'
   });

@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
         <a href="/dashboard">
-        <img src="{{ asset('img/logo/' . $setting->logo) }}" alt="Logo Peta" height="80px"> <br>
+        <img src="{{ asset('storage/logo/'.$setting->logo) }}" alt="Logo Peta" height="80px"> <br>
           {{ $setting->nama_app }}
         </a>
       </div>

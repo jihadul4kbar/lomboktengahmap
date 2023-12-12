@@ -112,7 +112,8 @@ attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contri
 }).addTo(map);
 
 map.attributionControl.setPrefix(false);
-
+map.options.minZoom = 9;
+map.options.maxZoom = 14;
 var marker = new L.marker(curLocation, {
 draggable: 'true'
 });
