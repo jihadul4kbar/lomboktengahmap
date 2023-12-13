@@ -74,9 +74,9 @@
                         @endforeach
                     };
                     @foreach ($lokasi as $lok)
-                        const {{ strtolower(str_replace(' ', '_', preg_replace('/[^A-Za-z0-9\-]/', ' ', $lok->nama_lokasi))) }} = L.marker([{{ $lok->latitude }},{{ $lok->longitude }}]).bindPopup('<h3>{{ $lok->nama_lokasi }}</h3>' 
+                        const {{ strtolower(str_replace(' ', '_', preg_replace('~\P{L}+~u', '', $lok->nama_lokasi))) }} = L.marker([{{ $lok->latitude }},{{ $lok->longitude }}]).bindPopup('<h3>{{ $lok->nama_lokasi }}</h3>' 
                         + '<br><img src="{{ asset('storage/lokasi/' . $lok->gambar) }}", width="300" style="text-center">'
-                        + '<p>{{preg_replace('/[^A-Za-z0-9\-]/', ' ', $lok->diskripsi)}}</p>').addTo({{ strtolower(str_replace(' ', '_',$lok->kategori))}});
+                        + '<p>{{ preg_replace('~\P{L}+~u', ' ', $lok->diskripsi)}}</p>').addTo({{ strtolower(str_replace(' ', '_',$lok->kategori))}});
                     @endforeach
 
                     

@@ -61,7 +61,7 @@
                             </div>
                         @enderror
                         <br>
-                        Paren Kategori:
+                        Kategori:
                         <select name="id_kategori" class="form-control">
                         @forelse ($kategori as $row)
                                 <option value="{{ $row->id }}">{{ $row->kategori }}</option>

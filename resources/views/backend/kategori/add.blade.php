@@ -25,7 +25,7 @@
                         @csrf
                         Kategori : <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" value="{{ old('kategori') }}" placeholder="Masukkan Kategori">
 
-                        <!-- error message untuk title -->
+                        <!-- pesan error untuk katagori -->
                         @error('kategori')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -34,7 +34,7 @@
                         <br>
                         Icon : <input type="text" class="form-control @error('icon') is-invalid @enderror" name="icon" value="{{ old('icon') }}" placeholder="Icon Kategori">
 
-                        <!-- error message untuk title -->
+                        <!-- pesan error untuk icon -->
                         @error('icon')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -43,18 +43,15 @@
                         <br>
                         Paren Kategori:
                         <select name="parent_id" class="form-control">
-                        @forelse ($paren as $row)
-                              @if (empty($paren))
-                              <option value="0">Umum</option>
-                              @endif
-                                <option value="{{ $row->id }}">{{ $row->kategori }}</option>
-                        @empty
-                            <option value="">Data tidak ada</option>
-                        @endforelse
+                        @if (!$paren->isEmpty())
+                            @foreach ($paren as $row)
+                              <option value="{{ $row->id }}">{{ $row->kategori }}</option>
+                            @endforeach
+                        @else
+                          <option value="0">Umum</option>
+                        @endif
                         </select>
-
-
-                        <!-- error message untuk title -->
+                        <!--pesan error untuk paren kategori -->
                         @error('parent_id')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}

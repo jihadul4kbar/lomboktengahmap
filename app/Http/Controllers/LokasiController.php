@@ -32,7 +32,7 @@ class LokasiController extends Controller
     }
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request,[
             'nama_lokasi' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
