@@ -18,7 +18,7 @@ class LokasiController extends Controller
         $lokasi =DB::table('lokasis')
                 ->join('kategoris', 'id_kategori', '=', 'kategoris.id')
                 ->select('lokasis.id','lokasis.diskripsi', 'lokasis.nama_lokasi','lokasis.latitude','lokasis.longitude','lokasis.gambar','lokasis.icon','kategoris.kategori')
-                ->paginate(5);
+                ->paginate(25);
         $nomor = 1;
         return view('backend.lokasi.index', compact('lokasi','nomor','judul'));
 

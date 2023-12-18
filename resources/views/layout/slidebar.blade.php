@@ -25,6 +25,9 @@
         <li><a class="nav-link" href="/lokasi">
           <i class="fa fa-atom"></i> <span>Lokasi</span></a>
         </li>
+        <li><a class="nav-link" href="/area">
+          <i class="fa fa-atom"></i><span>Area</span></a>
+        </li>
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Setting</span></a>
           <ul class="dropdown-menu">
