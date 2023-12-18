@@ -10,10 +10,9 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $judul = "Kategori";
         $kategoris = Kategori::latest()->paginate(5)->fragment('kategori');
         $nomor = 1;
-        return view('backend.kategori.index', compact('kategoris','nomor','judul'));
+        return view('backend.kategori.index', compact('kategoris','nomor'));
     }
 
     public function create()

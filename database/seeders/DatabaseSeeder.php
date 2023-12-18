@@ -237,6 +237,5 @@ class DatabaseSeeder extends Seeder
             ]
         ];
         Kategori::insert($kategoriData);
-
     }
 }

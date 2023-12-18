@@ -25,21 +25,23 @@
                             <th>No</th>
                             <th>Nama Area</th>
                             <th>Data</th>
+                            <th>Kategori</th>
                             <th>Keterangan</th>
                             <th><a href="{{route('area.create')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> Tambah Data</a> </th>
                         </tr>
-                        @forelse ($areas as $row )
+                        @forelse ($kategori as $row )
                         <tr>
                             <td>{{$nomor++}}</td>
                             <td>{{$row->nama_area}}</td>
                             <td>{{$row->data}}</td>
+                            <td>{{$row->kategori}}</td>
                             <td>{{$row->ket}}</td>
                             <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="fa fa-f3 fa-trash"></i></a></td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">Data Belum Ada</td>
+                            <td colspan="5" class="text-center">Data Belum Ada</td>
                         </tr>
                     @endforelse
                       </table>

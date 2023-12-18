@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LokasiController;
@@ -23,6 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::resource('/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/lokasi', LokasiController::class)->middleware('auth');
+Route::resource('/area', AreaController::class)->middleware('auth');
 Route::get('/dashboard',[Dashboard::class, 'index'])->name('dashboard')->middleware('auth');
 
 /*
